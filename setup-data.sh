@@ -2,8 +2,8 @@
 
 # Creates gz- directory structure for gzserver containing world and model data
 
-WORLD_IMAGE="ghcr.io/tiiuae/tii-gz-world-empty:1.0.0-rc.1"
-MODEL_IMAGE="ghcr.io/tiiuae/tii-gz-model-holybro-x500:1.0.0-rc.1"
+WORLD_IMAGE="ghcr.io/tiiuae/tii-gz-world-empty:1.0.0"
+MODEL_IMAGE="ghcr.io/tiiuae/tii-gz-model-holybro-x500:1.0.0"
 
 rm -rf gz-world/
 rm -rf gz-models/

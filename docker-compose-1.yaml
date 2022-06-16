@@ -1,6 +1,8 @@
+version: '3'
+
 services:
   gzserver:
-    image: ghcr.io/tiiuae/tii-gzserver:2.0.0-rc.2
+    image: ghcr.io/tiiuae/tii-gzserver:2.0.0
     command: empty.world
     environment:
       - PX4_SIM_USE_TCP_SERVER=1 
@@ -9,13 +11,13 @@ services:
       - ./gz-plugins:/gz-plugins
       - ./gz-world:/gz-world
   px401:
-    image: ghcr.io/tiiuae/tii-px4-sitl:sha-81a93c4
+    image: ghcr.io/tiiuae/tii-px4-sitl:sha-7e86f65
     environment:
       - DRONE_DEVICE_ID=drone01
       - SIMULATION=1
       - PX4_SIM_USE_TCP_SERVER=1 
   micrortps01:
-    image: ghcr.io/tiiuae/tii-micrortps-agent:sha-0b977ce
+    image: ghcr.io/tiiuae/tii-micrortps-agent:sha-cccdcbc-1
     network_mode: service:px401
     environment:
       - DRONE_DEVICE_ID=drone01
