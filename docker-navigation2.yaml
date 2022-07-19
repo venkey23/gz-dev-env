@@ -1,0 +1,54 @@
+version: '3'
+
+services:
+  gzserver:
+    image: ghcr.io/tiiuae/tii-gzserver:2.0.0
+    command: small_blocks_with_walls.world
+    network_mode: host
+    environment:
+      - PX4_SIM_USE_TCP_SERVER=1
+      - TZ=Asia/Muscat
+    volumes:
+      - ./gz-models:/gz-models
+      - ./gz-plugins:/gz-plugins
+      - ./gz-world:/gz-world
+  px401:
+    image: ghcr.io/tiiuae/tii-px4-sitl:sha-7e86f65
+    network_mode: host
+    environment:
+      - DRONE_DEVICE_ID=drone01
+      - SIMULATION=1
+      - PX4_SIM_USE_TCP_SERVER=1 
+      - TZ=Asia/Muscat
+  micrortps01:
+    image: ghcr.io/tiiuae/tii-micrortps-agent:sha-cccdcbc-1
+    network_mode: host
+    environment:
+      - DRONE_DEVICE_ID=drone01
+      - SIMULATION=1
+      - PX4_SIM_USE_TCP_SERVER=1
+      - TZ=Asia/Muscat
+  octomap:
+    image: ghcr.io/tiiuae/tii-octomap-server2:sha-ed55cc2-1
+    network_mode: host
+    environment:
+      - DRONE_DEVICE_ID=drone01
+      - SIMULATION=1
+      - PX4_SIM_USE_TCP_SERVER=1 
+      - TZ=Asia/Muscat
+  rplidar:
+    image: ghcr.io/tiiuae/tii-rplidar:sha-3c21ad7
+    network_mode: host
+    environment:
+      - DRONE_DEVICE_ID=drone01
+      - SIMULATION=1
+      - PX4_SIM_USE_TCP_SERVER=1 
+      - TZ=Asia/Muscat
+  # fognav:
+  #   image: ghcr.io/tiiuae/tii-fog-navigation:sha-0967171
+  #   network_mode: host
+  #   environment:
+  #     - DRONE_DEVICE_ID=drone01
+  #     - SIMULATION=1
+  #     - PX4_SIM_USE_TCP_SERVER=1 
+  #     - TZ=Asia/Muscat
